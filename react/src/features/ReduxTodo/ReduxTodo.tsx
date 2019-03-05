@@ -1,16 +1,21 @@
 import React, { Component, Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import styles from './ReduxTodo.module.css';
 import { ReduxTodoAdd } from './components/ReduxTodoAdd';
 import { ReduxTodoCategory } from './components/ReduxTodoCategory';
 import { ReduxTodoList } from './components/ReduxTodoList';
 import { ReduxTodoMessage } from './components/ReduxTodoMessage';
 import { ReduxTodoStatus } from './components/ReduxTodoStatus';
+import { reducers } from './reducers';
+import styles from './ReduxTodo.module.css';
+
+const store = createStore(reducers);
 
 export class ReduxTodo extends Component<{}, {}> {
   render() {
     return (
-      <Fragment>
+      <Provider store={store}>
         <div className={styles['top']}>
           <ReduxTodoAdd />
           <ReduxTodoMessage />
@@ -22,7 +27,7 @@ export class ReduxTodo extends Component<{}, {}> {
           <ReduxTodoStatus />
           <ReduxTodoCategory />
         </div>
-      </Fragment>
+      </Provider>
     );
   }
 }
