@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 
 import styles from './ReduxTodo.module.css';
-import { ReduxTodoAdd } from './ReduxTodoAdd/ReduxTodoAdd';
-import { ReduxTodoCategory } from './ReduxTodoCategory/ReduxTodoCategory';
-import { ReduxTodoList } from './ReduxTodoList/ReduxTodoList';
-import { ReduxTodoMessage } from './ReduxTodoMessage/ReduxTodoMessage';
-import { ReduxTodoStatus } from './ReduxTodoStatus/ReduxTodoStatus';
+import { ReduxTodoAdd } from './components/ReduxTodoAdd';
+import { ReduxTodoCategory } from './components/ReduxTodoCategory';
+import { ReduxTodoList } from './components/ReduxTodoList';
+import { ReduxTodoMessage } from './components/ReduxTodoMessage';
+import { ReduxTodoStatus } from './components/ReduxTodoStatus';
 
 export class ReduxTodo extends Component<{}, {}> {
   render() {
