@@ -14,10 +14,10 @@ export const isTextFree = (todos: Todo[], text: string) => {
 
 export const findByText = (todos: Todo[], text: string) => todos.find(todo => todo.text === text);
 
-export const hiddenCategory = (todos: Todo[], text: string, category: TodoCategory): TodoCategory | void => {
+export const hiddenCategory = (todos: Todo[], text: string, category: TodoCategory): TodoCategory | undefined => {
   const todo = findByText(todos, text);
   if (!todo) {
-    return;
+    return undefined;
   }
   if (todo.done === false && category === 'completed') {
     return 'active';

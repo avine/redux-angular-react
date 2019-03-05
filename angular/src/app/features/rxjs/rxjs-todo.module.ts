@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { RxjsTodoAddComponent } from './components/rxjs-todo-add/rxjs-todo-add.component';
+import { RxjsTodoCategoryComponent } from './components/rxjs-todo-category/rxjs-todo-category.component';
 import { RxjsTodoListComponent } from './components/rxjs-todo-list/rxjs-todo-list.component';
 import { RxjsTodoMessageComponent } from './components/rxjs-todo-message/rxjs-todo-message.component';
 import { RxjsTodoStatusComponent } from './components/rxjs-todo-status/rxjs-todo-status.component';
-import { RxjsTodoSwitchComponent } from './components/rxjs-todo-switch/rxjs-todo-switch.component';
 import { RxjsTodoComponent } from './components/rxjs-todo/rxjs-todo.component';
 import { RxjsTodoService } from './services/rxjs-todo.service';
 
@@ -19,7 +19,7 @@ import { RxjsTodoService } from './services/rxjs-todo.service';
     RxjsTodoMessageComponent,
     RxjsTodoListComponent,
     RxjsTodoStatusComponent,
-    RxjsTodoSwitchComponent
+    RxjsTodoCategoryComponent
   ],
   providers: [
     RxjsTodoService

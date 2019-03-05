@@ -1,13 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
+import { UiTodoAdd, UiTodoCategory, UiTodoList, UiTodoMessage, UiTodoStatus } from '../../components/ui';
 import {
-    UiTodoAdd, UiTodoList, UiTodoMessage, UiTodoStatus, UiTodoSwitch
-} from '../../components/ui';
-import {
-    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder,
-    TodoCategory, toggleDone
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
-import { ApiService } from '../../shared/ApiService';
+import { RestService } from '../../shared/RestService';
 import styles from './VanillaTodo.module.css';
 
 export interface IVanillaTodoState {
@@ -50,28 +47,28 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   }
 
   refresh = () => {
-    ApiService.getTodos().then(({ data }) => this.setState({ todos: data }));
+    RestService.getTodos().then(({ data }) => this.setState({ todos: data }));
   }
 
   add = (text: string) => {
-    ApiService.addTodo(todoBuilder(text)).then(this.refresh);
+    RestService.addTodo(todoBuilder(text)).then(this.refresh);
     this.setState({ text: '' });
   }
 
   toggleDone = (todo: Todo) => {
-    ApiService.updateTodo(toggleDone(todo)).then(this.refresh);
+    RestService.updateTodo(toggleDone(todo)).then(this.refresh);
   }
 
   editText = (todo: Todo, text: string) => {
     if (text) {
-      ApiService.updateTodo(editText(todo, text)).then(this.refresh);
+      RestService.updateTodo(editText(todo, text)).then(this.refresh);
     } else {
       this.remove(todo);
     }
   }
 
   remove = (todo: Todo) => {
-    ApiService.removeTodo(todo).then(this.refresh);
+    RestService.removeTodo(todo).then(this.refresh);
   }
 
   filterEnabledChange = (filterEnabled: boolean) => this.setState({ filterEnabled });
@@ -102,7 +99,7 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
 
         <div className={styles['bottom']}>
           <UiTodoStatus status={this.status} />
-          <UiTodoSwitch category={this.state.category} select={this.selectCategory} />
+          <UiTodoCategory category={this.state.category} select={this.selectCategory} />
         </div>
       </Fragment>
     );

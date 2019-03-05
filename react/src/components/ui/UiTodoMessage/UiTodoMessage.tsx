@@ -6,7 +6,7 @@ import { TodoCategory } from '../../../domains';
 import styles from './UiTodoMessage.module.css';
 
 export interface IUiTodoMessageProps {
-  hiddenCategory: TodoCategory | void;
+  hiddenCategory: TodoCategory | undefined;
 }
 
 export class UiTodoMessage extends Component<IUiTodoMessageProps> {

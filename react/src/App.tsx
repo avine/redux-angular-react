@@ -18,7 +18,7 @@ class App extends Component {
           <h1 className={styles['title']}>{this.title}</h1>
 
           <div className={styles['navbar']}>
-            <Nav></Nav>
+            <Nav />
           </div>
 
           <Switch>

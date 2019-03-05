@@ -1,8 +1,7 @@
 import {
-    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder,
-    TodoCategory, toggleDone
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder, TodoCategory, toggleDone
 } from 'App/domains';
-import { ApiService } from 'App/services/api.service';
+import { RestService } from 'App/services/rest.service';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -28,7 +27,7 @@ import { Component, OnInit } from '@angular/core';
 
     <div class="bottom">
       <app-ui-todo-status [status]="status"></app-ui-todo-status>
-      <app-ui-todo-switch [(category)]="category"></app-ui-todo-switch>
+      <app-ui-todo-category [(category)]="category"></app-ui-todo-category>
     </div>
   `,
   styleUrls: ['./vanilla-todo.component.css']
@@ -62,31 +61,31 @@ export class VanillaTodoComponent implements OnInit {
     return getStatus(this.todos);
   }
 
-  refresh = () => this.apiService.getTodos().subscribe(todos => this.todos = todos);
+  refresh = () => this.restService.getTodos().subscribe(todos => this.todos = todos);
 
-  constructor(private apiService: ApiService) { }
+  constructor(private restService: RestService) { }
 
   ngOnInit() {
     this.refresh();
   }
 
   add(text: string) {
-    this.apiService.addTodo(todoBuilder(text)).subscribe(this.refresh);
+    this.restService.addTodo(todoBuilder(text)).subscribe(this.refresh);
   }
 
   toggleDone(todo: Todo) {
-    this.apiService.updateTodo(toggleDone(todo)).subscribe(this.refresh);
+    this.restService.updateTodo(toggleDone(todo)).subscribe(this.refresh);
   }
 
   editText({ todo, text }: { todo: Todo, text: string }) {
     if (text) {
-      this.apiService.updateTodo(editText(todo, text)).subscribe(this.refresh);
+      this.restService.updateTodo(editText(todo, text)).subscribe(this.refresh);
     } else {
       this.remove(todo);
     }
   }
 
   remove(todo: Todo) {
-    this.apiService.removeTodo(todo).subscribe(this.refresh);
+    this.restService.removeTodo(todo).subscribe(this.refresh);
   }
 }
