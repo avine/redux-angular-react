@@ -15,7 +15,7 @@ export interface IVanillaTodoState {
 }
 
 export class VanillaTodo extends Component<{}, IVanillaTodoState> {
-  state: IVanillaTodoState = {
+  readonly state: IVanillaTodoState = {
     todos: [],
     filterEnabled: false,
     text: '',

@@ -6,6 +6,8 @@ import { Todo } from '../../../domains';
 import UiTodoTextEditable from '../UiTodoTextEditable/UiTodoTextEditable';
 import styles from './UiTodoList.module.css';
 
+const noop = () => {};
+
 export interface IUiTodoListProps {
   todos: Todo[];
   toggleDone: (todo: Todo) => void;
@@ -14,6 +16,13 @@ export interface IUiTodoListProps {
 }
 
 export class UiTodoList extends Component<IUiTodoListProps> {
+  static defaultProps: IUiTodoListProps = {
+    todos: [],
+    editText: noop,
+    toggleDone: noop,
+    remove: noop
+  };
+
   render() {
     return (
       <Fragment>

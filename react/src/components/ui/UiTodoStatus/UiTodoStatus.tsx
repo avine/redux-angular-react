@@ -10,6 +10,10 @@ export interface IUiTodoStatusProps {
 }
 
 export class UiTodoStatus extends Component<IUiTodoStatusProps> {
+  static defaultProps: IUiTodoStatusProps = {
+    status: {remainCount: 0, totalCount: 0}
+  };
+
   get hasTotal() {
     return !!this.props.status!.totalCount;
   }

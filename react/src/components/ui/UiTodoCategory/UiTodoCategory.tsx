@@ -4,12 +4,19 @@ import React, { Component } from 'react';
 import { TodoCategory } from '../../../domains';
 import styles from './UiTodoCategory.module.css';
 
+const noop = () => {};
+
 export interface IUiTodoCategoryProps {
   category: TodoCategory;
   select: (category: TodoCategory) => void;
 }
 
 export class UiTodoCategory extends Component<IUiTodoCategoryProps> {
+  static defaultProps: IUiTodoCategoryProps = {
+    category: 'all',
+    select: noop
+  };
+
   list: TodoCategory[] = ['all', 'active', 'completed'];
 
   className(item: TodoCategory) {

@@ -16,7 +16,7 @@ export interface IUiTodoTextEditableState {
 }
 
 export class UiTodoTextEditable extends Component<IUiTodoTextEditableProps, IUiTodoTextEditableState> {
-  state: IUiTodoTextEditableState = {
+  readonly state: IUiTodoTextEditableState = {
     edit: false,
     textContent: '',
   };

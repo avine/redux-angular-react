@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './UiTodoAdd.module.css';
 
+const noop = () => {};
+
 export interface IUiTodoAddProps {
   filterEnabled: boolean;
   filterEnabledChange: (filterEnabled: boolean) => void;
@@ -15,6 +17,15 @@ export interface IUiTodoAddProps {
 }
 
 export class UiTodoAdd extends Component<IUiTodoAddProps> {
+  static defaultProps: IUiTodoAddProps = {
+    filterEnabled: false,
+    filterEnabledChange: noop,
+    text: '',
+    textChange: noop,
+    addDisabled: false,
+    add: noop
+  };
+
   emitFilterEnabled = () => {
     this.props.filterEnabledChange(!this.props.filterEnabled);
   };

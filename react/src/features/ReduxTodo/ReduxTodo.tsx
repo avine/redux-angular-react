@@ -7,11 +7,7 @@ import { ReduxTodoList } from './ReduxTodoList/ReduxTodoList';
 import { ReduxTodoMessage } from './ReduxTodoMessage/ReduxTodoMessage';
 import { ReduxTodoStatus } from './ReduxTodoStatus/ReduxTodoStatus';
 
-export interface IReduxTodoState {}
-
-export class ReduxTodo extends Component<{}, IReduxTodoState> {
-  state: IReduxTodoState = {};
-
+export class ReduxTodo extends Component<{}, {}> {
   render() {
     return (
       <Fragment>

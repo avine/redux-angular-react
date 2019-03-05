@@ -10,6 +10,10 @@ export interface IUiTodoMessageProps {
 }
 
 export class UiTodoMessage extends Component<IUiTodoMessageProps> {
+  static defaultProps: IUiTodoMessageProps = {
+    hiddenCategory: undefined
+  };
+
   render() {
     return (
       <p className={styles['message']}>
