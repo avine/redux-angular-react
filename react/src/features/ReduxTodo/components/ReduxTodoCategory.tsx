@@ -4,12 +4,12 @@ import { Dispatch } from 'redux';
 import { IUiTodoCategoryProps, UiTodoCategory } from '../../../components/ui';
 import { TodoCategory } from '../../../domains';
 import { ActionsUnion, Category } from '../actions/todo.actions';
-import { AppState } from '../reducers';
+import { AppState, getCategory } from '../reducers';
 
 type StateProps = Pick<IUiTodoCategoryProps, 'category'>;
 
 const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
-  category: state.todo.category
+  category: getCategory(state)
 });
 
 type DispatchProps = Pick<IUiTodoCategoryProps, 'select'>;

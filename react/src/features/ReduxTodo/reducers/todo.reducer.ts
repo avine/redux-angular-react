@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
+import { createSelector } from 'reselect';
 
-import { Todo, TodoCategory } from '../../../domains';
+import { Todo, TodoCategory, filterByCategoryAndText, isTextFree, hiddenCategory } from '../../../domains';
 import { ActionsUnion, ActionTypes } from '../actions/todo.actions';
 
 export interface State {
@@ -44,3 +45,31 @@ export const reducer: Reducer<State> = (state = initialState, action: ActionsUni
     }
   }
 };
+
+export const _getTodos = (state: State) => state.list;
+
+export const _getText = (state: State) => state.text;
+
+export const _getCategory = (state: State) => state.category;
+
+export const _getFilterEnabled = (state: State) => state.filterEnabled;
+
+export const _getFilter = createSelector(
+  _getText, _getFilterEnabled,
+  (text, filterEnabled) => filterEnabled ? text : ''
+);
+
+export const _getTodosFiltered = createSelector(
+  _getTodos, _getCategory, _getFilter,
+  (todos, category, filter) => filterByCategoryAndText(todos, category, filter)
+);
+
+export const _getIsTextFree = createSelector(
+  _getTodos, _getText,
+  (todos, text) => isTextFree(todos, text)
+);
+
+export const _getHiddenCategory = createSelector(
+  _getTodos, _getText, _getCategory,
+  (todos, text, category) => hiddenCategory(todos, text, category)
+);

@@ -1,16 +1,16 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { UiTodoAdd, IUiTodoAddProps } from '../../../components/ui';
+import { IUiTodoAddProps, UiTodoAdd } from '../../../components/ui';
 import { todoBuilder } from '../../../domains';
 import { ActionsUnion, Add, FilterEnabled, Text } from '../actions/todo.actions';
-import { AppState } from '../reducers';
+import { AppState, getFilterEnabled, getText } from '../reducers';
 
 type StateProps = Pick<IUiTodoAddProps, 'text' | 'filterEnabled'>;
 
 const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
-  text          : state.todo.text,
-  filterEnabled : state.todo.filterEnabled
+  text          : getText(state),
+  filterEnabled : getFilterEnabled(state)
 });
 
 type DispatchProps = Pick<IUiTodoAddProps, 'textChange' | 'filterEnabledChange' | 'add'>;

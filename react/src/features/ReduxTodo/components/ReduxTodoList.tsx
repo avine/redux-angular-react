@@ -3,12 +3,12 @@ import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
 import { IUiTodoListProps, UiTodoList } from '../../../components/ui';
 import { Remove, Update } from '../actions/todo.actions';
-import { AppState } from '../reducers';
+import { AppState, getTodos } from '../reducers';
 
 type StateProps = Pick<IUiTodoListProps, 'todos'>;
 
 const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
-  todos: state.todo.list
+  todos: getTodos(state)
 });
 
 type DispatchProps = Pick<IUiTodoListProps, 'toggleDone' | 'editText' | 'remove'>;
