@@ -1,14 +1,20 @@
 import { Reducer } from 'redux';
 
-import { Todo } from '../../../domains';
+import { Todo, TodoCategory } from '../../../domains';
 import { ActionsUnion, ActionTypes } from '../actions/todo.actions';
 
 export interface State {
   list: Todo[];
+  text: string;
+  category: TodoCategory;
+  filterEnabled: boolean;
 }
 
 export const initialState: State = {
-  list: []
+  list: [],
+  text: '',
+  category: 'all',
+  filterEnabled: false
 };
 
 export const reducer: Reducer<State> = (state = initialState, action: ActionsUnion) => {
@@ -19,6 +25,18 @@ export const reducer: Reducer<State> = (state = initialState, action: ActionsUni
 
     case ActionTypes.AddSuccess: {
       return { ...state, list: [action.payload, ...state.list] };
+    }
+
+    case ActionTypes.Text: {
+      return { ...state, text: action.payload };
+    }
+
+    case ActionTypes.Category: {
+      return { ...state, category: action.payload };
+    }
+
+    case ActionTypes.FilterEnabled: {
+      return { ...state, filterEnabled: action.payload };
     }
 
     default: {

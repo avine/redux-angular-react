@@ -1,5 +1,10 @@
-import React from 'react';
+import { connect, MapStateToProps } from 'react-redux';
 
-import { UiTodoStatus } from '../../../components/ui';
+import { IUiTodoStatusProps, UiTodoStatus } from '../../../components/ui';
+import { AppState } from '../reducers';
 
-export const ReduxTodoStatus = () => <UiTodoStatus />;
+const mapStateToProps: MapStateToProps<IUiTodoStatusProps, {}, AppState> = (state) => ({
+  status: { remainCount: 0, totalCount: 0 }
+});
+
+export const ReduxTodoStatus = connect(mapStateToProps, null)(UiTodoStatus);

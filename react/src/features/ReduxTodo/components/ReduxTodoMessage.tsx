@@ -1,5 +1,10 @@
-import React from 'react';
+import { connect, MapStateToProps } from 'react-redux';
 
-import { UiTodoMessage } from '../../../components/ui';
+import { IUiTodoMessageProps, UiTodoMessage } from '../../../components/ui';
+import { AppState } from '../reducers';
 
-export const ReduxTodoMessage = () => <UiTodoMessage />;
+const mapStateToProps: MapStateToProps<IUiTodoMessageProps, {}, AppState> = (state) => ({
+  hiddenCategory: undefined
+});
+
+export const ReduxTodoMessage = connect(mapStateToProps, null)(UiTodoMessage);
