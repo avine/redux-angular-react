@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import { ReduxTodoAdd } from './components/ReduxTodoAdd';
 import { ReduxTodoCategory } from './components/ReduxTodoCategory';
@@ -11,7 +12,10 @@ import { ReduxTodoStatus } from './components/ReduxTodoStatus';
 import { reducers } from './reducers';
 import styles from './ReduxTodo.module.css';
 
-const store = createStore(reducers, composeWithDevTools());
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 export class ReduxTodo extends Component<{}, {}> {
   render() {
