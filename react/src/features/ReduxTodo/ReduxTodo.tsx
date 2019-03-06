@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { ReduxTodoAdd } from './components/ReduxTodoAdd';
 import { ReduxTodoCategory } from './components/ReduxTodoCategory';
@@ -10,7 +11,7 @@ import { ReduxTodoStatus } from './components/ReduxTodoStatus';
 import { reducers } from './reducers';
 import styles from './ReduxTodo.module.css';
 
-const store = createStore(reducers);
+const store = createStore(reducers, composeWithDevTools());
 
 export class ReduxTodo extends Component<{}, {}> {
   render() {
