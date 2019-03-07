@@ -18,7 +18,7 @@ export const initialState: State = {
   filterEnabled: false
 };
 
-export const reducer: Reducer<State> = (state = initialState, action: ActionsUnion) => {
+export const reducer: Reducer<State> = (state = initialState, action: any) => { // ActionsUnion
   switch (action.type) {
     case ActionTypes.LoadSuccess: {
       return { ...state, list: action.payload };
@@ -26,6 +26,26 @@ export const reducer: Reducer<State> = (state = initialState, action: ActionsUni
 
     case ActionTypes.AddSuccess: {
       return { ...state, list: [action.payload, ...state.list] };
+    }
+
+    case ActionTypes.UpdateSuccess: {
+      const index = state.list.findIndex(bookmark => bookmark.id === action.payload.id);
+      if (index !== -1) {
+        const list = [...state.list];
+        list.splice(index, 1, action.payload);
+        return { ...state, list };
+      }
+      return state;
+    }
+
+    case ActionTypes.RemoveSuccess: {
+      const index = state.list.findIndex(bookmark => bookmark.id === action.payload.id);
+      if (index !== -1) {
+        const list = [...state.list];
+        list.splice(index, 1);
+        return { ...state, list };
+      }
+      return state;
     }
 
     case ActionTypes.Text: {
@@ -46,7 +66,10 @@ export const reducer: Reducer<State> = (state = initialState, action: ActionsUni
   }
 };
 
-export const _getTodos = (state: State) => state.list;
+export const _getTodos = (state: State) => {
+  console.log('_getTodos', state.list);
+  return state.list;
+};
 
 export const _getText = (state: State) => state.text;
 

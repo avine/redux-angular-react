@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { ReduxTodoAdd } from './components/ReduxTodoAdd';
 import { ReduxTodoCategory } from './components/ReduxTodoCategory';
 import { ReduxTodoList } from './components/ReduxTodoList';
+import { ReduxTodoLoad } from './components/ReduxTodoLoad';
 import { ReduxTodoMessage } from './components/ReduxTodoMessage';
 import { ReduxTodoStatus } from './components/ReduxTodoStatus';
 import { reducers } from './reducers';
@@ -21,6 +22,8 @@ export class ReduxTodo extends Component<{}, {}> {
   render() {
     return (
       <Provider store={store}>
+        <ReduxTodoLoad />
+
         <div className={styles['top']}>
           <ReduxTodoAdd />
           <ReduxTodoMessage />

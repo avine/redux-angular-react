@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 
 import { Todo } from '../domains';
 
@@ -25,7 +25,8 @@ export class RestService {
     return axios.put<boolean>(this.getUrl(`todos/${todo.id}`), todo);
   }
 
-  static removeTodo(todo: Todo) {
+  static removeTodo(todo: Todo): AxiosPromise<boolean> {
+    console.log('removeTodo', todo);
     return axios.delete(this.getUrl(`todos/${todo.id}`));
   }
 }
