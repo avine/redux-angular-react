@@ -18,29 +18,28 @@ export enum ActionTypes {
   FilterEnabled = '[Redux:Todos] FilterEnabled'
 }
 
-
-export const Load = () => ({ 
+export const Load = () => ({
   type: ActionTypes.Load as typeof ActionTypes.Load
 });
-export const LoadSuccess = (payload: Todo[]) => ({ 
+export const LoadSuccess = (payload: Todo[]) => ({
   type: ActionTypes.LoadSuccess as typeof ActionTypes.LoadSuccess, payload
 });
 
-export const Add = (payload: Partial<Todo>) => ({ 
+export const Add = (payload: Partial<Todo>) => ({
   type: ActionTypes.Add as typeof ActionTypes.Add, payload
 });
-export const AddSuccess = (payload: Todo) => ({ 
+export const AddSuccess = (payload: Todo) => ({
   type: ActionTypes.AddSuccess as typeof ActionTypes.AddSuccess, payload
 });
 
-export const Update = (payload: Todo) => ({ 
+export const Update = (payload: Todo) => ({
   type: ActionTypes.Update as typeof ActionTypes.Update, payload
 });
 export const UpdateSuccess = (payload: Todo) => ({
   type: ActionTypes.UpdateSuccess as typeof ActionTypes.UpdateSuccess, payload
 });
 
-export const Remove = (payload: Todo) => ({ 
+export const Remove = (payload: Todo) => ({
   type: ActionTypes.Remove as typeof ActionTypes.Remove, payload
 });
 export const RemoveSuccess = (payload: Todo) => ({

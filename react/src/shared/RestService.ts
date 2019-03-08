@@ -4,28 +4,22 @@ import { Todo } from '../domains';
 
 const apiBaseUrl = 'http://127.0.0.1:3100/';
 
-export class RestService {
-  static getUrl(url: string) {
-    return apiBaseUrl + url;
-  }
+const getUrl = (url: string) => apiBaseUrl + url;
 
-  static getTodos() {
-    return axios.get<Todo[]>(this.getUrl('todos'));
-  }
+const getTodos = () => axios.get<Todo[]>(getUrl('todos'));
 
-  static getTodo(todo: Todo) {
-    return axios.get<Todo>(this.getUrl(`todos/${todo.id}`));
-  }
+const getTodo = (todo: Todo) => axios.get<Todo>(getUrl(`todos/${todo.id}`));
 
-  static addTodo(todo: Partial<Todo>) {
-    return axios.post<Todo>(this.getUrl('todos'), todo);
-  }
+const addTodo = (todo: Partial<Todo>) => axios.post<Todo>(getUrl('todos'), todo);
 
-  static updateTodo(todo: Todo) {
-    return axios.put<boolean>(this.getUrl(`todos/${todo.id}`), todo);
-  }
+const updateTodo = (todo: Todo) => axios.put<boolean>(getUrl(`todos/${todo.id}`), todo);
 
-  static removeTodo(todo: Todo): AxiosPromise<boolean> {
-    return axios.delete(this.getUrl(`todos/${todo.id}`));
-  }
-}
+const removeTodo = (todo: Todo): AxiosPromise<boolean> => axios.delete(getUrl(`todos/${todo.id}`));
+
+export default {
+  getTodos,
+  getTodo,
+  addTodo,
+  updateTodo,
+  removeTodo
+};

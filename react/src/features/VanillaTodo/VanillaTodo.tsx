@@ -4,7 +4,7 @@ import { UiTodoAdd, UiTodoCategory, UiTodoList, UiTodoMessage, UiTodoStatus } fr
 import {
     editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
-import { RestService } from '../../shared/RestService';
+import RestService from '../../shared/RestService';
 import styles from './VanillaTodo.module.css';
 
 export interface IVanillaTodoState {

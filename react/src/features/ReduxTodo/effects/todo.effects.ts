@@ -1,47 +1,45 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
 
-import { RestService } from '../../../shared/RestService';
-import {
-    ActionTypes, Add, AddSuccess, LoadSuccess, Remove, RemoveSuccess, Update, UpdateSuccess
-} from '../actions/todo.actions';
+import RestService from '../../../shared/RestService';
+import { ActionTypes, Add, AddSuccess, LoadSuccess, Remove, RemoveSuccess, Update, UpdateSuccess } from '../actions/todo.actions';
 
 function* getTodos() {
-  const todos = yield RestService.getTodos().then(({ data }) => data);
-  yield put(LoadSuccess(todos));
+  const { data } = yield call(RestService.getTodos);
+  yield put(LoadSuccess(data));
 }
-function* getTodosEffects() {
+function* getTodosEffect() {
   yield takeEvery(ActionTypes.Load, getTodos);
 }
 
 function* addTodo(action: ReturnType<typeof Add>) {
-  const todo = yield RestService.addTodo(action.payload).then(({ data }) => data);
-  yield put(AddSuccess(todo));
+  const { data } = yield call(RestService.addTodo, action.payload);
+  yield put(AddSuccess(data));
 }
-function* addTodoEffects() {
+function* addTodoEffect() {
   yield takeEvery(ActionTypes.Add, addTodo);
 }
 
 function* updateTodo(action: ReturnType<typeof Update>) {
-  const success = yield RestService.updateTodo(action.payload).then(({ data }) => data);
+  const { data } = yield call(RestService.updateTodo, action.payload);
   yield put(UpdateSuccess(action.payload));
 }
-function* updateTodoEffects() {
+function* updateTodoEffect() {
   yield takeEvery(ActionTypes.Update, updateTodo);
 }
 
 function* removeTodo(action: ReturnType<typeof Remove>) {
-  const success = yield RestService.removeTodo(action.payload).then(({ data }) => data);
+  const { data } = yield call(RestService.removeTodo, action.payload);
   yield put(RemoveSuccess(action.payload));
 }
-function* removeTodoEffects() {
+function* removeTodoEffect() {
   yield takeEvery(ActionTypes.Remove, removeTodo);
 }
 
 export function* todoEffects() {
   yield all([
-    getTodosEffects(),
-    addTodoEffects(),
-    updateTodoEffects(),
-    removeTodoEffects()
+    getTodosEffect(),
+    addTodoEffect(),
+    updateTodoEffect(),
+    removeTodoEffect()
   ]);
 }
