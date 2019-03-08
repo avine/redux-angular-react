@@ -1,12 +1,11 @@
 import { connect, MapDispatchToProps } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { Dispatch } from 'redux';
 
 import { ActionsUnion, Load } from '../actions/todo.actions';
-import { AppState } from '../reducers';
 
 type DispatchProps = { load: () => void; };
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch<AppState, {}, ActionsUnion>) => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch<ActionsUnion>) => ({
   load: () => dispatch(Load())
 });
 

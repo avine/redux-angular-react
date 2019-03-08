@@ -66,10 +66,7 @@ export const reducer: Reducer<State, ActionsUnion> = (state = initialState, acti
   }
 };
 
-export const _getTodos = (state: State) => {
-  console.log('_getTodos', state.list);
-  return state.list;
-};
+export const _getTodos = (state: State) => state.list;
 
 export const _getText = (state: State) => state.text;
 

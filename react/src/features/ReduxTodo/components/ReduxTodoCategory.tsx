@@ -1,5 +1,5 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { Dispatch } from 'redux';
 
 import { IUiTodoCategoryProps, UiTodoCategory } from '../../../components/ui';
 import { TodoCategory } from '../../../domains';
@@ -14,7 +14,7 @@ const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
 
 type DispatchProps = Pick<IUiTodoCategoryProps, 'select'>;
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch<AppState, {}, ActionsUnion>) => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch<ActionsUnion>) => ({
   select: (category: TodoCategory) => dispatch(Category(category))
 });
 

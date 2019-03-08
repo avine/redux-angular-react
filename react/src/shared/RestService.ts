@@ -26,7 +26,6 @@ export class RestService {
   }
 
   static removeTodo(todo: Todo): AxiosPromise<boolean> {
-    console.log('removeTodo', todo);
     return axios.delete(this.getUrl(`todos/${todo.id}`));
   }
 }

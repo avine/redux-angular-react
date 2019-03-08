@@ -1,5 +1,5 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { Dispatch } from 'redux';
 
 import { IUiTodoListProps, UiTodoList } from '../../../components/ui';
 import { editText, toggleDone } from '../../../domains';
@@ -14,7 +14,7 @@ const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
 
 type DispatchProps = Pick<IUiTodoListProps, 'toggleDone' | 'editText' | 'remove'>;
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch<AppState, {}, ActionsUnion>) => ({
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: Dispatch<ActionsUnion>) => ({
   editText    : (todo, text) => dispatch(Update(editText(todo, text))),
   toggleDone  : (todo) => dispatch(Update(toggleDone(todo))),
   remove      : (todo) => dispatch(Remove(todo))
