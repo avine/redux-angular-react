@@ -1,5 +1,5 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
-import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 
 import { IUiTodoAddProps, UiTodoAdd } from '../../../components/ui';
 import { isTextFree, todoBuilder } from '../../../domains';
@@ -16,7 +16,7 @@ const mapStateToProps: MapStateToProps<StateProps, {}, AppState> = (state) => ({
 
 type DispatchProps = Pick<IUiTodoAddProps, 'textChange' | 'filterEnabledChange' | 'add'>;
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: any) => ({ // Dispatch<ActionsUnion>
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch: ThunkDispatch<AppState, {}, ActionsUnion>) => ({
   textChange          : (text: string) => dispatch(Text(text)),
   filterEnabledChange : (filterEnabled: boolean) => dispatch(FilterEnabled(filterEnabled)),
   add                 : (text: string) => dispatch(Add(todoBuilder(text)))

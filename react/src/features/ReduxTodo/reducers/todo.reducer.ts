@@ -18,14 +18,14 @@ export const initialState: State = {
   filterEnabled: false
 };
 
-export const reducer: Reducer<State> = (state = initialState, action: any) => { // ActionsUnion
+export const reducer: Reducer<State, ActionsUnion> = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.LoadSuccess: {
       return { ...state, list: action.payload };
     }
 
     case ActionTypes.AddSuccess: {
-      return { ...state, list: [action.payload, ...state.list] };
+      return { ...state, list: [action.payload, ...state.list], text: '' };
     }
 
     case ActionTypes.UpdateSuccess: {
